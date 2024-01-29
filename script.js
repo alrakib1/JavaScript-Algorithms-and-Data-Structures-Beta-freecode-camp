@@ -29,13 +29,31 @@ function goStore() {
   update(locations[1]);
 }
 
-function goCave() {}
+function goCave() {
+  update(locations[2]);
+}
 
 function fightDragon() {}
 
-function buyHealth() {}
+function buyHealth() {
+  if (gold >= 10) {
+    gold -= 10;
+    health += 10;
+    goldText.innerText = gold;
+    healthText.innerText = health;
+  } else {
+    text.innerText = "You do not have enough gold to buy health.";
+  }
+}
 
-function buyWeapon() {}
+function buyWeapon() {
+  if (gold >= 30) {
+    gold -= 30;
+    currentWeapon ++;
+    goldText.innerText = gold;
+    text.innerText = "You now have a new weapon."
+  }
+}
 
 function update(location) {
   button1.innerText = location["button text"][0];
@@ -50,6 +68,25 @@ function update(location) {
 function fightSlime() {}
 
 function fightBeast() {}
+
+const weapons = [
+  {
+    name: "stick",
+    power: 5,
+  },
+  {
+    name: "dagger",
+    power: 30,
+  },
+  {
+    name: "claw hammer",
+    power: 50,
+  },
+  {
+    name: "sword",
+    power: 100,
+  },
+];
 
 const locations = [
   {
@@ -78,8 +115,7 @@ const locations = [
 
 // initialize buttons
 
-button1.onclick = goStore();
-button2.onclick = goCave();
-button3.onclick = fightDragon();
-
-console.log("from js file");
+button1.onclick = goStore;
+button2.onclick = goCave;
+button3.onclick = fightDragon;
+console.log("hi");
