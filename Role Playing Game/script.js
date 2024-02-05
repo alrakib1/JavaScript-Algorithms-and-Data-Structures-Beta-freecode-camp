@@ -47,7 +47,7 @@ function buyHealth() {
 }
 
 function buyWeapon() {
-  if (currentWeapon < weapons.length-1) {
+  if (currentWeapon < weapons.length - 1) {
     if (gold >= 30) {
       gold -= 30;
       currentWeapon++;
@@ -59,24 +59,23 @@ function buyWeapon() {
     } else {
       text.innerText = "You do not have enough gold to buy a weapon.";
     }
-  }
-  else{
+  } else {
     text.innerText = "You already have the most powerful weapon!";
-    button2.innerText ="Sell weapon for 15 gold";
+    button2.innerText = "Sell weapon for 15 gold";
     button2.onclick = sellWeapon;
   }
 }
 
-function sellWeapon(){
-  if(inventory.length>1){
+function sellWeapon() {
+  if (inventory.length > 1) {
     gold += 15;
     goldText.innerText = gold;
     let currentWeapon;
     currentWeapon = inventory.shift();
     text.innerText = "You sold a " + currentWeapon + ".";
     text.innerText += " In your inventory you have: " + inventory;
-  }else{
-      text.innerText = "Don't sell your only weapon!";
+  } else {
+    text.innerText = "Don't sell your only weapon!";
   }
 }
 
@@ -91,7 +90,12 @@ function update(location) {
 }
 
 function goFight() {
-
+  update(locations[3]);
+  monsterHealth = monsters[fighting].health;
+  const monsterStats = document.getElementById("monsterStats");
+  monsterStats.style.display = "block";
+  monsterName.innerText = monsters[fighting].name;
+  monsterHealthText.innerText = monsterHealth;
 }
 
 function fightSlime() {
@@ -109,13 +113,14 @@ function fightDragon() {
   goFight();
 }
 
-function attack( ) {
-  
+function attack() {
+
+text.innerText = "The " + monsters[fighting].name + " attacks.";
+text.innerText -= " You attack it with your " + weapons[currentWeapon].name + ".";
+health += monsters[fighting].level ;
 }
 
-function dodge( ) {
-  
-}
+function dodge() {}
 
 const weapons = [
   {
@@ -139,17 +144,17 @@ const weapons = [
 const monsters = [
   {
     name: "slime",
-    level:2,
+    level: 2,
     health: 15,
   },
   {
     name: "fanged beast",
-    level:8,
+    level: 8,
     health: 60,
   },
   {
     name: "dragon",
-    level:20,
+    level: 20,
     health: 300,
   },
 ];
@@ -182,7 +187,7 @@ const locations = [
     "button text": ["Attack", "Dodge", "Run"],
     "button functions": [attack, dodge, goTown],
     text: "You are fighting a monster.",
-  }
+  },
 ];
 
 // initialize buttons
@@ -190,4 +195,3 @@ const locations = [
 button1.onclick = goStore;
 button2.onclick = goCave;
 button3.onclick = fightDragon;
-
