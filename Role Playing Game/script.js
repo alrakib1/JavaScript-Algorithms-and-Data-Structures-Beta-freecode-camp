@@ -90,9 +90,32 @@ function update(location) {
   text.innerText = location.text;
 }
 
-function fightSlime() {}
+function goFight() {
 
-function fightBeast() {}
+}
+
+function fightSlime() {
+  fighting = 0;
+  goFight();
+}
+
+function fightBeast() {
+  fighting = 1;
+  goFight();
+}
+
+function fightDragon() {
+  fighting = 2;
+  goFight();
+}
+
+function attack( ) {
+  
+}
+
+function dodge( ) {
+  
+}
 
 const weapons = [
   {
@@ -110,6 +133,24 @@ const weapons = [
   {
     name: "sword",
     power: 100,
+  },
+];
+
+const monsters = [
+  {
+    name: "slime",
+    level:2,
+    health: 15,
+  },
+  {
+    name: "fanged beast",
+    level:8,
+    health: 60,
+  },
+  {
+    name: "dragon",
+    level:20,
+    health: 300,
   },
 ];
 
@@ -136,6 +177,12 @@ const locations = [
     "button functions": [fightSlime, fightBeast, goTown],
     text: "You enter the cave. You see some monsters.",
   },
+  {
+    name: "fight",
+    "button text": ["Attack", "Dodge", "Run"],
+    "button functions": [attack, dodge, goTown],
+    text: "You are fighting a monster.",
+  }
 ];
 
 // initialize buttons
@@ -143,4 +190,4 @@ const locations = [
 button1.onclick = goStore;
 button2.onclick = goCave;
 button3.onclick = fightDragon;
-console.log("hi");
+
