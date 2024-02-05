@@ -67,6 +67,10 @@ function buyWeapon() {
   }
 }
 
+function sellWeapon(){
+  
+}
+
 function update(location) {
   button1.innerText = location["button text"][0];
   button2.innerText = location["button text"][1];
