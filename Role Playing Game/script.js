@@ -133,7 +133,11 @@ function attack() {
   if (health <= 0) {
     lose();
   } else if (monsterHealth <= 0) {
-    defeatMonster();
+    if (fighting === 2) {
+      winGame();
+    } else {
+      defeatMonster();
+    }
   }
 }
 
@@ -226,6 +230,12 @@ const locations = [
     "button functions": [restart, restart, restart],
     text: "You die. ☠️",
   },
+  {
+    name: "win",
+    "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
+    "button functions": [restart, restart, restart],
+    text: "You defeat the dragon! YOU WIN THE GAME! 🎉",
+  },
 ];
 
 // initialize buttons
@@ -257,4 +267,8 @@ function restart() {
   healthText.innerText = health;
   xpText.innerText = xp;
   goTown();
+}
+
+function winGame (){
+  update(locations[6]);
 }
